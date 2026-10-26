@@ -1,0 +1,8 @@
+{
+  "label": "Integrations",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Deploy the Slack bridge and build MCP servers for your agents."
+  }
+}

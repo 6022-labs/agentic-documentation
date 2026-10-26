@@ -1,0 +1,12 @@
+@import "../../../agentic-agent-node/web/src/index.css";
+
+@source "../../../agentic-agent-node/web/src/components";
+@source "./";
+
+/* CSS animations and transitions run on wall-clock time, not on frames: freeze them so renders are deterministic. */
+.dark *,
+.dark *::before,
+.dark *::after {
+  transition: none !important;
+  animation: none !important;
+}

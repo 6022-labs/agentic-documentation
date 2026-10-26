@@ -1,0 +1,37 @@
+.tabs > li {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Infima already scrolls .tabs sideways; on phones fade the cut edge, with end padding so the last tab clears the fade. */
+@media (max-width: 640px) {
+  .tabs {
+    padding-right: 1.5rem;
+    mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
+    scrollbar-width: none;
+  }
+}
+
+.panel {
+  border-left: 3px solid var(--ifm-color-primary);
+  padding: 0.75rem 0 0.25rem 1rem;
+  margin-bottom: var(--ifm-leading);
+}
+
+/* Decorative: the empty alt text keeps the badge out of the tab's accessible name. */
+.viaSkills::after {
+  content: "via skills";
+  content: "via skills" / "";
+  margin-left: 0.4rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.6;
+  white-space: nowrap;
+  align-self: center;
+  letter-spacing: 0.06em;
+  background: var(--brand-accent-soft);
+  color: var(--ifm-color-primary);
+}

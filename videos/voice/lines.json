@@ -1,0 +1,30 @@
+{
+  "voice": "SAz9YHcvj6GT2YYXdXww",
+  "model": "eleven_multilingual_v2",
+  "leadFrames": 8,
+  "tailFrames": 10,
+  "videos": {
+    "protocol-flow": [
+      {
+        "minFrames": 120,
+        "text": "Your agent only knows a name. ENS turns it into a website and a wallet."
+      },
+      {
+        "minFrames": 130,
+        "text": "The website has two files, both signed by that wallet. Now you know who answers."
+      },
+      {
+        "minFrames": 140,
+        "text": "Your agent asks. The other agent sets a price. Yours signs, but no money moves yet."
+      },
+      {
+        "minFrames": 130,
+        "text": "The agent answers, then takes the payment. No answer, no charge."
+      },
+      {
+        "minFrames": 80,
+        "text": "Same protocol, any runtime."
+      }
+    ]
+  }
+}

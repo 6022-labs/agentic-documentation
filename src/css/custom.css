@@ -1,0 +1,74 @@
+/* 6022 graphic chart, shared with the videos (videos/src/kit.tsx). */
+:root {
+  --brand-accent-soft: rgba(26, 122, 102, 0.1);
+  --brand-border: #e5e5e5;
+  --brand-muted: #737373;
+
+  --ifm-color-primary: #1a7a66;
+  --ifm-color-primary-dark: #176e5c;
+  --ifm-color-primary-darker: #166857;
+  --ifm-color-primary-darkest: #125547;
+  --ifm-color-primary-light: #1d8670;
+  --ifm-color-primary-lighter: #1e8c75;
+  --ifm-color-primary-lightest: #229f85;
+
+  --ifm-font-family-base: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ifm-font-family-monospace: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ifm-global-radius: 10px;
+  --ifm-code-border-radius: 6px;
+  --ifm-code-font-size: 92%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] {
+  --brand-accent-soft: rgba(37, 194, 160, 0.14);
+  --brand-border: #262626;
+  --brand-muted: #a1a1a1;
+
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+
+  --ifm-background-color: #0a0a0a;
+  --ifm-background-surface-color: #171717;
+  --ifm-navbar-background-color: #0a0a0a;
+  --ifm-footer-background-color: #0a0a0a;
+  --ifm-color-emphasis-200: #262626;
+  --ifm-toc-border-color: #262626;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* The footer stays dark in light mode, where the light-mode teal lacks contrast on hover. */
+.footer--dark {
+  --ifm-footer-link-hover-color: #25c2a0;
+}
+
+.navbar__logo img {
+  border-radius: 999px;
+  background: #fff;
+}
+
+/* Doc images get the same frame as videos. */
+.markdown img {
+  border-radius: var(--ifm-global-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .markdown img {
+  box-shadow: 0 0 0 1px var(--brand-border), 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Wide diagrams keep their natural size on phones and scroll sideways instead of shrinking to unreadable text. */
+.docusaurus-mermaid-container {
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  .docusaurus-mermaid-container > svg {
+    max-width: none;
+  }
+}

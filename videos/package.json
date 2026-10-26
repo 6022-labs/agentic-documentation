@@ -1,0 +1,35 @@
+{
+  "name": "6022-docs-videos",
+  "private": true,
+  "description": "Remotion sources of the documentation videos; renders land in ../static/video.",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "node render.mjs",
+    "timeline": "node voice/timeline.mjs",
+    "voice": "node voice/generate.mjs",
+    "voices": "node voice/list-voices.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20.12"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.529",
+    "@remotion/google-fonts": "4.0.529",
+    "@remotion/media": "4.0.529",
+    "@remotion/tailwind-v4": "4.0.529",
+    "clsx": "2.1.1",
+    "lucide-react": "1.48.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "remotion": "4.0.529",
+    "tailwind-merge": "3.7.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "typescript": "6.0.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
+}

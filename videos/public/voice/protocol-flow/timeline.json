@@ -1,0 +1,32 @@
+[
+  {
+    "from": 0,
+    "durationInFrames": 148,
+    "audioAt": 8,
+    "clip": "40ee22c37238"
+  },
+  {
+    "from": 148,
+    "durationInFrames": 158,
+    "audioAt": 156,
+    "clip": "3e2dfad493db"
+  },
+  {
+    "from": 306,
+    "durationInFrames": 173,
+    "audioAt": 314,
+    "clip": "35d76aa6081f"
+  },
+  {
+    "from": 479,
+    "durationInFrames": 130,
+    "audioAt": 487,
+    "clip": "a4122ab56268"
+  },
+  {
+    "from": 609,
+    "durationInFrames": 80,
+    "audioAt": 617,
+    "clip": "d1a5047d1c51"
+  }
+]

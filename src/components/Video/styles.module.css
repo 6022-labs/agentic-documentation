@@ -1,0 +1,48 @@
+.figure {
+  margin: 1.5rem 0;
+}
+
+.frame {
+  position: relative;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--ifm-global-radius);
+  background: #0a0a0a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.video:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
+/* The whole poster is the play button; its "▶ duration" pill is the cue. */
+.play {
+  position: absolute;
+  inset: 0;
+  border: none;
+  border-radius: var(--ifm-global-radius);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.play:hover {
+  background: color-mix(in srgb, var(--ifm-color-primary) 6%, transparent);
+}
+
+.play:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--brand-muted);
+  text-align: center;
+}
