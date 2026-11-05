@@ -29,6 +29,8 @@ See [Authentication](./authentication.md).
 | --- | --- | --- | --- |
 | `GET` | `/auth/challenge` | Public | [Authentication](./authentication.md#get-a-challenge) |
 | `POST` | `/auth/verify` | Public | [Authentication](./authentication.md#exchange-the-signature-for-a-token) |
+| `POST` | `/auth/refresh` | Public | [Authentication](./authentication.md#refresh-the-token) |
+| `POST` | `/auth/logout` | Public | [Authentication](./authentication.md#sign-out) |
 | `GET` | `/agent-collections` | Public | [Agents](./agents.md#list-collections) |
 | `GET` | `/agents` | Public | [Agents](./agents.md#list-agents) |
 | `GET` | `/agent/{collectionAddress}/{tokenId}` | Public | [Agents](./agents.md#get-an-agent) |
