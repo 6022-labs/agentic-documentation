@@ -16,8 +16,10 @@ sequenceDiagram
     G-->>C: message, expiresAt
     Note over C: Signs the message
     C->>G: POST /auth/verify
-    G-->>C: token, expiresAt
+    G-->>C: token, refreshToken
     C->>G: Authorization: Bearer <token>
+    C->>G: POST /auth/refresh (refreshToken)
+    G-->>C: new token, new refreshToken
 ```
 
 The private key never leaves the client.
@@ -66,7 +68,9 @@ Response `200`:
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIs...",
-  "expiresAt": "2026-09-30T11:00:00Z"
+  "expiresAt": "2026-09-30T11:00:00Z",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIs...",
+  "refreshExpiresAt": "2026-10-01T10:00:00Z"
 }
 ```
 
@@ -74,6 +78,8 @@ Response `200`:
 | --- | --- |
 | `400` | The address or signature is malformed. |
 | `401` | The challenge expired or was already used (`challenge_not_found`), or the signature doesn't match the address (`signature_mismatch`). |
+
+Keep `refreshToken` to [refresh the token](#refresh-the-token) without signing again.
 
 ## Use the token
 
@@ -84,7 +90,39 @@ curl https://orchestrator.example.com/conversations \
   -H "Authorization: Bearer <token>"
 ```
 
-A missing, invalid or expired token gets `401`. There's no refresh endpoint: sign in again.
+A missing, invalid or expired token gets `401`.
+
+## Refresh the token
+
+`POST /auth/refresh` · Public
+
+```json
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIs..."
+}
+```
+
+Returns a new token and refresh token, same shape as `/auth/verify`. The old refresh token stops working. The console refreshes a minute before expiry.
+
+A session ends after a day without a refresh (`JWT__REFRESH_IDLE_TTL`), or 7 days after sign-in (`JWT__REFRESH_TTL`).
+
+| Status | When |
+| --- | --- |
+| `400` | The body is missing or isn't JSON. |
+| `401` | `refresh_token_missing`, `refresh_token_invalid` (invalid or expired), `session_revoked` (signed out) or `refresh_token_reused`. |
+| `500` | The gateway couldn't rotate the session (`refresh_failed`). |
+
+Reusing a spent refresh token signs the session out. Within 30 seconds (two tabs, for example), it succeeds instead.
+
+:::warning
+Store the refresh token like a password: whoever holds it keeps the session.
+:::
+
+## Sign out
+
+`POST /auth/logout` · Public
+
+Same body as `/auth/refresh`. Returns `204`, even for an empty or invalid `refreshToken`; `400` for a missing or non-JSON body; `500` (`revoke_failed`) if revocation fails. Issued tokens stay valid until they expire.
 
 ## Examples
 
@@ -213,6 +251,8 @@ Behind a reverse proxy that rewrites paths, sign the path the gateway sees, not 
 | `JWT__HASH` | None | HMAC secret for the JWTs. At least 32 characters. Required. |
 | `JWT__LIVING_TIME` | None | Token lifetime in seconds. Required. |
 | `JWT__NONCE_TTL` | `300` | How long a challenge stays valid, in seconds. |
+| `JWT__REFRESH_TTL` | `604800` | Maximum session length after sign-in, in seconds. |
+| `JWT__REFRESH_IDLE_TTL` | `86400` | How long a refresh token stays valid, in seconds. At least twice `JWT__LIVING_TIME`, raised if lower. |
 | `SIWE__URI` | `http://localhost:5173` | The URI in the sign-in message. Its host becomes the message's domain, which wallets show. Set it to your console's public URL. |
 | `SIWE__STATEMENT` | `Sign in to the 6022 orchestrator.` | The statement line of the message. |
 | `SIWE__SIGNED_REQUEST_MAX_AGE_SECONDS` | `60` | How far a [signed request](#signed-requests)'s timestamp may be from the gateway's clock, in seconds. |

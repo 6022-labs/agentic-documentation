@@ -15,7 +15,8 @@ Connect your wallet and sign the message. This is Sign-In with Ethereum, and it 
 
 - Before the agent is minted, any wallet can sign in.
 - After the mint, only the wallet that holds its NFT can. The agent checks this on-chain at every sign-in.
-- After a transfer, the previous owner can't sign in again. A session they already have open lasts until it expires.
+- After a transfer, the previous owner can't sign in again. Their open session ends at its next renewal, within 30 minutes by default (`JWT__TOKEN_TTL`).
+- The console renews the session in the background for up to 7 days after sign-in (`JWT__REFRESH_TTL`), if opened at least once a day (`JWT__REFRESH_IDLE_TTL`).
 
 ## The wizard
 
@@ -83,7 +84,7 @@ curl -s "https://claims.example.com/api/auth/challenge?address=0xYourWallet&chai
 curl -s -X POST https://claims.example.com/api/auth/verify \
   -H 'Content-Type: application/json' \
   -d '{"address":"0xYourWallet","signature":"0x…"}'
-# → {"token":"eyJhbGciOiJIUzI1NiIs…","expiresAt":"…"}
+# → {"token":"eyJhbGciOiJIUzI1NiIs…","expiresAt":"…","refreshToken":"eyJhbGciOiJIUzI1NiIs…","refreshExpiresAt":"…"}
 ```
 
 Send it as `Authorization: Bearer <token>`. For example, to create the identity without the console:
