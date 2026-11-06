@@ -66,12 +66,14 @@ Every setting can be set in `appsettings.json` or as an environment variable. Th
 | Variable | What it is |
 | --- | --- |
 | `AGENT_IDENTITY__RUNTIME_URL` | Public HTTPS address (`https://claims.example.com`). Published as the ENS `url` record. |
-| `SIWE__URI` | The same public HTTPS address. It goes into the sign-in message. Defaults to `http://localhost:5500`, and wallets warn about the sign-in domain if it doesn't match the page. |
+| `CONSOLE__URL` | The same public HTTPS address. It goes into the sign-in message and is the only browser origin allowed by default. The gateway won't start without it. |
 | `JWT__SIGNING_KEY` | A random secret: `openssl rand -hex 32`. |
 | `VAULT__ADDRESS`, `VAULT__TOKEN` | Your Vault. |
 | `RUNTIME_DATABASE__DRIVER`, `RUNTIME_DATABASE__URL` | The agent's own database. |
 | `IPFS__NODE_HTTP_URL` | Your IPFS node. |
 | `BLOCKCHAIN__EVM_CHAINS__137__HTTP_URL` | An RPC URL for each chain you use (`137` for Polygon). |
+
+To let other browser origins call the agent, such as an x402 client on another site, set `CORS__ALLOW_ORIGINS` to a comma-separated list, or `*` for any.
 
 To add an agent next to shared infrastructure that already exists (database server, Vault, IPFS, Grafana), the [`mount-agent-node`](../runtimes/skills.md) skill does it for you on Railway.
 

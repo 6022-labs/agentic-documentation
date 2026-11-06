@@ -213,7 +213,7 @@ The signed message is these eight lines, joined with `\n`:
 
 ```text
 6022 orchestrator signed request
-<gateway domain, the host of SIWE__URI>
+<gateway domain, the host of CONSOLE__URL>
 <METHOD>
 <path, without the query, as the gateway receives it>
 <raw query string, or an empty line>
@@ -253,6 +253,7 @@ Behind a reverse proxy that rewrites paths, sign the path the gateway sees, not 
 | `JWT__NONCE_TTL` | `300` | How long a challenge stays valid, in seconds. |
 | `JWT__REFRESH_TTL` | `604800` | Maximum session length after sign-in, in seconds. |
 | `JWT__REFRESH_IDLE_TTL` | `86400` | How long a refresh token stays valid, in seconds. At least twice `JWT__LIVING_TIME`, raised if lower. |
-| `SIWE__URI` | `http://localhost:5173` | The URI in the sign-in message. Its host becomes the message's domain, which wallets show. Set it to your console's public URL. |
+| `CONSOLE__URL` | None | Your console's public URL. It's the URI in the sign-in message, its host is the message's domain that wallets show, and its origin is the default CORS origin. Required. |
+| `CORS__ALLOW_ORIGINS` | The `CONSOLE__URL` origin | Browser origins allowed to call the gateway, comma-separated. `*` allows any. |
 | `SIWE__STATEMENT` | `Sign in to the 6022 orchestrator.` | The statement line of the message. |
 | `SIWE__SIGNED_REQUEST_MAX_AGE_SECONDS` | `60` | How far a [signed request](#signed-requests)'s timestamp may be from the gateway's clock, in seconds. |
