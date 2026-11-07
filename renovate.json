@@ -1,0 +1,52 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "reviewers": [
+    "FournyP"
+  ],
+  "timezone": "Europe/Paris",
+  "schedule": [
+    "before 6am on monday"
+  ],
+  "prHourlyLimit": 0,
+  "minimumReleaseAge": "3 days",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
+  "enabledManagers": [
+    "npm",
+    "dockerfile",
+    "github-actions"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": "npm minor/patch updates in one PR.",
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "npm non-major"
+    },
+    {
+      "description": "Node version moves together everywhere it is pinned.",
+      "matchDepNames": [
+        "node"
+      ],
+      "groupName": "node toolchain"
+    },
+    {
+      "description": "Remotion packages must share one exact version.",
+      "matchPackageNames": [
+        "remotion",
+        "@remotion/**"
+      ],
+      "groupName": "remotion"
+    }
+  ]
+}
