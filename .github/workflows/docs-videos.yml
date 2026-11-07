@@ -1,0 +1,44 @@
+name: Docs Videos
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "videos/package.json"
+      - "videos/package-lock.json"
+      - ".github/workflows/docs-videos.yml"
+
+concurrency:
+  group: docs-videos-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # No typecheck: videos/ imports agentic-agent-node sources (see videos/tsconfig.json).
+  dependencies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: videos
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: videos/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Exits non-zero when remotion packages disagree on version.
+      - name: Check remotion versions
+        run: npx remotion versions
