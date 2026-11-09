@@ -28,6 +28,8 @@ A paid rule also needs an [x402 facilitator](../concepts/payments.md#one-paid-ca
 PAYMENT__RECEIVE__FACILITATORS__137__BASE_URL=https://x402.polygon.technology
 ```
 
+[Deployments](../deployments.md#x402-facilitators) lists each chain's x402 facilitators.
+
 On a chain without one, the form only lets you create free rules. [Prices and budgets](../agent/payments.md) covers private rules, the API and more.
 
 </Runtime>

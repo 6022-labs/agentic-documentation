@@ -38,7 +38,7 @@ sequenceDiagram
     end
 ```
 
-The **x402 facilitator** is a service that checks x402 payments and submits them on-chain. The `PAYMENT-RESPONSE` header carries the transaction.
+The **x402 facilitator** is a service that checks x402 payments and submits them on-chain, paying the gas. The `PAYMENT-RESPONSE` header carries the transaction. [Deployments](../deployments.md#x402-facilitators) lists the x402 facilitators you can use.
 
 The headers carry base64 JSON. A decoded challenge looks like this:
 
