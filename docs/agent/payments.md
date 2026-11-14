@@ -37,6 +37,8 @@ PAYMENT__RECEIVE__FACILITATORS__137__BASE_URL=https://x402.polygon.technology
 PAYMENT__RECEIVE__FACILITATORS__80002__BASE_URL=https://x402-amoy.polygon.technology
 ```
 
+[Deployments](../deployments.md#x402-facilitators) lists each chain's x402 facilitators. 6022's only settles payments to an agent's [wallet addresses](../concepts/identity.md#what-an-identity-is-made-of).
+
 The agent refuses a paid rule on a chain with no x402 facilitator: such a chain appears in the form only for free rules. If you remove a chain's x402 facilitator, its saved paid rules are no longer offered to callers.
 
 An x402 facilitator for a chain with no RPC stops the agent at startup.

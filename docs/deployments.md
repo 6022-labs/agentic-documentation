@@ -1,6 +1,6 @@
 ---
 title: Deployments
-description: The chains 6022 runs on, with contract addresses, RPC, faucet and payment facilitator for each.
+description: The chains 6022 runs on, with contract addresses, RPC and faucet for each, and the x402 facilitators that settle payments on them.
 ---
 
 # Deployments
@@ -21,7 +21,6 @@ No other chain has the contracts yet.
 | Chain id | `137` |
 | Explorer | [polygonscan.com](https://polygonscan.com) |
 | Public RPC | `https://polygon.drpc.org` |
-| x402 facilitator | `https://x402.polygon.technology` |
 
 | Contract | Role | Address |
 | --- | --- | --- |
@@ -39,7 +38,6 @@ No other chain has the contracts yet.
 | Explorer | [amoy.polygonscan.com](https://amoy.polygonscan.com) |
 | Public RPC | `https://rpc-amoy.polygon.technology` |
 | Faucet | [faucet.polygon.technology](https://faucet.polygon.technology) |
-| x402 facilitator | `https://x402-amoy.polygon.technology` |
 
 | Contract | Role | Address |
 | --- | --- | --- |
@@ -48,6 +46,19 @@ No other chain has the contracts yet.
 | AgentEnsRegistry | Naming: stores the ENS records | [`0x37c5879529E5b0241663ed40feeebb2326BBEE0d`](https://amoy.polygonscan.com/address/0x37c5879529E5b0241663ed40feeebb2326BBEE0d) |
 | AgentCollectionsDescriptor | Identity: renders NFT metadata | [`0x21D3E43A8b057609C3DC8f12dd3861fD2560754A`](https://amoy.polygonscan.com/address/0x21D3E43A8b057609C3DC8f12dd3861fD2560754A) |
 | Token6022 ($6022) | Token | [`0x26adaf578361953e8F1aC86D3e4Ca153493af5cB`](https://amoy.polygonscan.com/address/0x26adaf578361953e8F1aC86D3e4Ca153493af5cB) |
+
+## x402 facilitators
+
+An [x402 facilitator](./concepts/payments.md#one-paid-call) settles paid calls:
+
+| Chain | 6022 x402 facilitator | Polygon x402 facilitator |
+| --- | --- | --- |
+| Polygon (`137`) | `https://x402.6022.io` | `https://x402.polygon.technology` |
+| Polygon Amoy (`80002`) | `https://testnet.x402.6022.io` | `https://x402-amoy.polygon.technology` |
+| Ethereum Sepolia (`11155111`) | `https://testnet.x402.6022.io` | — |
+| Base Sepolia (`84532`) | `https://testnet.x402.6022.io` | — |
+
+6022's x402 facilitator settles USDC and $6022 payments to 6022 agents for free: see [x402 facilitator](./developers/x402-facilitator.md).
 
 ## ENS
 
