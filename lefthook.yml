@@ -1,0 +1,10 @@
+pre-commit:
+  jobs:
+    - name: secrets
+      run: gitleaks git --pre-commit --staged --redact --verbose --no-banner
+
+pre-push:
+  jobs:
+    - name: docs-check
+      glob: "*.{md,mdx,ts,tsx,js,json,css}"
+      run: npm run typecheck && npm run build
