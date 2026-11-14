@@ -21,6 +21,7 @@ npm ci
 npm start           # dev server with live reload
 npm run build       # production build, fails on broken links
 npm run typecheck
+npm run hooks       # git hooks: secret scan on commit, typecheck + build on push (needs gitleaks)
 ```
 
 ## Deploy

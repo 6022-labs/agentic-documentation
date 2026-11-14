@@ -12,7 +12,8 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "hooks": "lefthook install"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.2",
@@ -32,6 +33,7 @@
     "@docusaurus/types": "^3.10.2",
     "@types/react": "^19.2.18",
     "docusaurus-plugin-llms": "^0.5.1",
+    "lefthook": "2.2.2",
     "typescript": "~6.0.3"
   },
   "browserslist": {

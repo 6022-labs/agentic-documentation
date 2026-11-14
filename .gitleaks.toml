@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Placeholder and truncated example credentials in docs"
+regexes = ['''YOUR_[A-Z_]+''', '''\.\.\.$''']
