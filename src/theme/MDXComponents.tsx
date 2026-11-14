@@ -1,6 +1,7 @@
 import MDXComponents from "@theme-original/MDXComponents";
 import RuntimeTabs, { Runtime } from "@site/src/components/RuntimeTabs";
 import Screenshot from "@site/src/components/Screenshot";
+import ServiceIcon from "@site/src/components/ServiceIcon";
 import TaskTime from "@site/src/components/TaskTime";
 import Video from "@site/src/components/Video";
 
@@ -10,6 +11,7 @@ export default {
   RuntimeTabs,
   Runtime,
   Screenshot,
+  ServiceIcon,
   TaskTime,
   Video,
 };

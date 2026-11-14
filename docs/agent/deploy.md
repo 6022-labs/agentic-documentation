@@ -24,11 +24,12 @@ flowchart LR
 
 Only nginx is public. The runtime holds the keys and listens on localhost only.
 
-Around it, the agent needs three services:
+Around it, the agent needs three services, and can use a fourth:
 
-- a database: PostgreSQL, MySQL, MariaDB or SQLite;
-- HashiCorp Vault, for its secrets, such as its wallet key and API keys;
-- an IPFS node, for its images.
+- <ServiceIcon name="postgres" />a database: PostgreSQL, MySQL, MariaDB or SQLite;
+- <ServiceIcon name="vault" />HashiCorp Vault, for its secrets, such as its wallet key and API keys;
+- <ServiceIcon name="ipfs" />an IPFS node, for its images;
+- <ServiceIcon name="grafana" />optionally, a Grafana stack (Alloy, Loki, Mimir, Tempo), for its logs, metrics and traces.
 
 ## Run it locally
 
