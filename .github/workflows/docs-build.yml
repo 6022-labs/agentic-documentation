@@ -12,7 +12,8 @@ on:
       - "Dockerfile"
       - ".dockerignore"
       - "nginx-markdown.conf"
-      - ".github/workflows/docs-image.yml"
+      - ".github/workflows/docker-build.yml"
+      - ".github/workflows/release-images.yml"
       - ".github/workflows/docs-videos.yml"
 
 concurrency:
