@@ -46,7 +46,7 @@ A request fails with:
 
 ## Run your own
 
-The [source](https://github.com/6022-labs/agentic-x402-facilitator) is MIT-licensed. It runs as one Docker image and needs:
+The [source](https://github.com/6022-labs/agentic-x402-facilitator) runs as one Docker image and needs:
 
 - an RPC URL per chain it settles on, each marked as testnet or mainnet;
 - the tokens it settles, each with its transfer methods (`eip3009`, `permit2`) and, for `eip3009`, its EIP-712 name and version;

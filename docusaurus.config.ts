@@ -246,7 +246,7 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/6022-labs/agentic-documentation",
+              href: "https://github.com/6022-labs",
             },
           ],
         },

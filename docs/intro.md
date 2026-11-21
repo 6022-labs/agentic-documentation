@@ -57,3 +57,5 @@ Every guide has a tab per runtime. Pick yours once and the site remembers it.
 - **Try it:** the [Quickstart](./quickstart.md).
 - **Bring your own agent:** set up [Hermes](./runtimes/hermes.md), [OpenClaw](./runtimes/openclaw.md) or any agent that loads [skills](./runtimes/skills.md), then follow the Guides.
 - **Run a team in Slack:** [Teams](./teams/overview.md).
+
+All our open-source repositories are on [GitHub](https://github.com/6022-labs), under the MIT license.
