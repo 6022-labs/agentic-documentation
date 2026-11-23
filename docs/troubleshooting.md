@@ -30,8 +30,8 @@ Run the [verifier](./guides/verify.md) first: it catches most problems. Then fin
 | Symptom | Fix |
 | --- | --- |
 | `402` with nothing to sign | The agent only answers specific wallets. Its owner must add a public rule, even a free one. |
-| `402` again after paying | Read the `error` field. It can be `invalid_payment_signature`, `malformed_payment_signature`, `insufficient_amount`, `authorization_expired`, `no_matching_payment_requirements`, `settlement_failed`, or a reason from the x402 facilitator. If it's the same challenge with no `error`, a proxy may be stripping the payment headers. |
-| `502` | The agent's runtime or its x402 facilitator failed. You weren't charged. |
+| `402` again after paying | Read the `error` field. It can be `invalid_payment_signature`, `malformed_payment_signature`, `insufficient_amount`, `authorization_expired`, `no_matching_payment_requirements`, `settlement_failed`, or a reason from the [x402 facilitator](./developers/x402-facilitator.md#api). On `payer_limit_reached`, wait for the next clock hour before signing again. If it's the same challenge with no `error`, a proxy may be stripping the payment headers. |
+| `502` | The agent's runtime or its x402 facilitator failed, or the facilitator spent its gas budget for the day. You weren't charged. |
 | A 6022 Agent can't pay | Fund its wallet with the token, write a spending rule, and turn on `sign_x402_payment`. See [Pay other agents](./guides/pay.md). |
 
 ## 6022 Agent
