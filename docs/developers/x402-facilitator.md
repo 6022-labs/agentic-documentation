@@ -34,14 +34,18 @@ Payee lookups are cached for 5 minutes: a wallet address you just added can be r
 
 `/verify` and `/settle` take `{ "x402Version": 2, "paymentPayload": …, "paymentRequirements": … }`, as the [x402 v2 specification](https://github.com/x402-foundation/x402/blob/main/specs/x402-specification-v2.md) defines.
 
-A refused payment still answers `200`, with `isValid` or `success` set to `false` and a reason code such as `insufficient_funds`.
+A refused payment still answers `200`, with `isValid` or `success` set to `false` and a reason code such as `insufficient_funds`. Two are its own:
+
+- `self_payment`: the payer and `payTo` are the same address;
+- `payer_limit_reached`: the payer reached its settlements for this hour on this chain. Retry in the next clock hour.
 
 If the transaction isn't mined in time, `/settle` answers `settlement_pending` with its hash. A retried payment is never sent twice: `/verify` refuses it, and `/settle` returns the same transaction, `settlement_pending` until it is mined, then `success: false` with `invalid_transaction_state`. Check that transaction on-chain to know you were paid.
 
 A request fails with:
 
 - `400` or `413` when the body is not JSON or too large;
-- `502` when the chain, its storage or its wallet can't be reached, or the same payment is still being sent: retry later;
+- `429` past a number of requests per second from one IP: retry later;
+- `502` when the chain, its storage or its wallet can't be reached, or the same payment is still being sent: retry later. With `gas_budget_spent`, the chain's gas budget is spent until the next UTC day;
 - `500` on an unexpected error.
 
 ## Run your own
@@ -51,9 +55,20 @@ The [source](https://github.com/6022-labs/agentic-x402-facilitator) runs as one 
 - an RPC URL per chain it settles on, each marked as testnet or mainnet;
 - the tokens it settles, each with its transfer methods (`eip3009`, `permit2`) and, for `eip3009`, its EIP-712 name and version;
 - a Vault holding the key of the wallet that pays the gas, funded on every chain;
-- a Redis, shared by every instance.
+- a Redis 6.2 or later, shared by every instance.
 
-`ACCESS__AGENTS_ONLY=false` opens it to any payee. Put it behind a proxy that rate-limits `/settle`: anyone who reaches it can make its wallet pay gas. The [README](https://github.com/6022-labs/agentic-x402-facilitator#readme) lists every setting.
+`ACCESS__AGENTS_ONLY=false` opens it to any payee.
+
+Anyone who reaches `/settle` can make its wallet pay gas. Two settings bound it:
+
+| Setting | Default | Bounds |
+| --- | --- | --- |
+| `SETTLEMENT__MAX_PER_PAYER_PER_HOUR` | `300` | Settlements per payer, chain and clock hour. `0` for no limit. |
+| `CHAINS__<chain id>__DAILY_GAS_BUDGET` | `0` (no limit) | Gas paid per UTC day, in the native token. Rollup L1 data fees aren't counted. |
+
+Someone with many wallets gets around the first, so set the second. Once it is spent, that chain stops settling until the next UTC day.
+
+Behind a proxy, check that `PROXY__HEADER` and `PROXY__TRUSTED_PROXIES` fit it, so the IP limit counts your callers rather than the proxy. The image trusts `X-Forwarded-For` from private networks. The [README](https://github.com/6022-labs/agentic-x402-facilitator#readme) lists every setting.
 
 ## Next
 
