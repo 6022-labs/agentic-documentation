@@ -63,7 +63,7 @@ Send collection and wallet addresses as `0x`-prefixed hex, in any case. The gate
 | `401` | No token, an invalid or expired token, or a failed sign-in. |
 | `403` | The wallet has no access to the agent (`agent_access_forbidden`) or the conversation (`conversation_access_forbidden`). See [Ownership](./authentication.md#ownership). |
 | `404` | The resource doesn't exist. |
-| `429` | Too many requests. The gateway allows 50 per second by default (`RATE_LIMIT__REQUESTS_PER_SECOND`). |
+| `429` | Too many requests. The gateway allows 50 per second per IP by default (`RATE_LIMIT__REQUESTS_PER_SECOND`). |
 | `500` | An internal error. The body is plain text. |
 | `502` | The gateway couldn't reach an underlying service, or couldn't resolve an ENS name. |
 
