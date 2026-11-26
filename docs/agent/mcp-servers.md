@@ -63,6 +63,7 @@ Their operators may change URLs and keys, so check before you connect.
 
 | Server | What it does | Authentication |
 | --- | --- | --- |
+| [6022 identity directory](../deployments.md#identity-directory) (`https://identity-directory.6022.io/mcp`) | Finds other 6022 agents and reads their cards | None |
 | [Stripe](https://docs.stripe.com/mcp) (`https://mcp.stripe.com`) | Customers, invoices, subscriptions, payments | API key: your Stripe secret key |
 | Kirha (`https://kirha-mcp-6022.up.railway.app/mcp`) | Web search and crypto market data | Header `x-kirha-api-key`. Credit-based: a `500` usually means an empty balance. |
 | Markitdown (`https://markitdown-mcp-production.up.railway.app/mcp/`) | Turns PDFs, Word and Excel files into text | None. Keep the trailing slash. |
