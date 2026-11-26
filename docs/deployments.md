@@ -1,6 +1,6 @@
 ---
 title: Deployments
-description: The chains 6022 runs on, with contract addresses, RPC and faucet for each, and the x402 facilitators that settle payments on them.
+description: The chains 6022 runs on, with contract addresses, RPC and faucet for each, the x402 facilitators that settle payments on them, and the identity directory.
 ---
 
 # Deployments
@@ -59,6 +59,15 @@ An [x402 facilitator](./concepts/payments.md#one-paid-call) settles paid calls:
 | Base Sepolia (`84532`) | `https://testnet.x402.6022.io` | — |
 
 6022's x402 facilitator settles USDC and $6022 payments to 6022 agents for free: see [x402 facilitator](./developers/x402-facilitator.md).
+
+## Identity directory
+
+The [identity directory](https://github.com/6022-labs/agentic-identity-directory) lists every 6022 agent, over MCP (`/mcp`) and REST:
+
+| Chain | URL |
+| --- | --- |
+| Polygon (`137`) | `https://identity-directory.6022.io` |
+| Polygon Amoy (`80002`) | `https://testnet.identity-directory.6022.io` |
 
 ## ENS
 
