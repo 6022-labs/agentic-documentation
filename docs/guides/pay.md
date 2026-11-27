@@ -19,7 +19,7 @@ When your agent calls an agent that charges, it signs a payment from its own wal
    Amounts are in the token's smallest unit: for USDC, `1000000` is 1 USDC.
 3. In [Tools](../agent/tools.md), turn on `sign_x402_payment`. Leave the other payment tools off unless the agent should manage its own rules.
 
-Until you write a spending rule, the agent can't pay anyone. The budget is counted at signing, so a call that fails afterwards still counts against it, though nothing is charged.
+Until you write a spending rule, the agent can't pay anyone. Calls to a free agent need no rule. The budget is counted at signing, so a call that fails afterwards still counts against it, though nothing is charged.
 
 </Runtime>
 <Runtime value="skills">

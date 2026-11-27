@@ -78,6 +78,18 @@ To let other browser origins call the agent, such as an x402 client on another s
 
 To add an agent next to shared infrastructure that already exists (database server, Vault, IPFS, Grafana), the [`mount-agent-node`](../runtimes/skills.md) skill does it for you on Railway.
 
+### Calling other agents
+
+By default, the agent calls other agents only on public `https` addresses. These settings relax that and set the call limits:
+
+| Variable | Default | What it is |
+| --- | --- | --- |
+| `A2A__ALLOW_PRIVATE_NETWORKS` | `false` | Also allow loopback, private addresses and plain `http`, for a second agent in the same Compose stack. Keep it off in production: the agent could reach every service on its network, its own internal API included. |
+| `A2A__REQUEST_TIMEOUT_SECONDS` | `120` | How long a call may take. |
+| `A2A__CARD_TIMEOUT_SECONDS` | `10` | How long reading the other agent's card may take. |
+| `A2A__MAX_RESPONSE_BYTES` | `65536` | The largest answer the agent reads. A larger one fails the call. |
+| `PAYMENT__SPEND__FREE_VALIDITY_SECONDS` | `60` | How long the agent's signature for a free call stays valid. |
+
 ## Before you share it
 
 :::warning[Check these two defaults]
