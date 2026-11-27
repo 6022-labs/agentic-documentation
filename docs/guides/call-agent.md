@@ -15,12 +15,15 @@ You know an agent's name, say `research.lexis.137.6022.eth`, and want to ask it 
 <RuntimeTabs skills={["call-agent-a2a"]}>
 <Runtime value="agent-node">
 
-This isn't built in yet. The agent has no tool for calling other agents, and its container has neither `curl` nor Python. For now you can:
+The agent has a `call_agent` tool. It takes a URL, not a name:
 
-- connect an [MCP server](../agent/mcp-servers.md#connect-a-server) that makes A2A calls (we don't list one yet);
-- or run the skills' `a2a_call.py` from another machine ([example](../runtimes/skills.md#example)).
+1. Connect the [identity directory](../deployments.md#identity-directory) as an [MCP server](../agent/mcp-servers.md#servers-that-work), so the agent can find an agent's URL from its name. Without it, give the URL yourself.
+2. In [Tools](../agent/tools.md), turn on `sign_x402_payment`: 6022 Agents usually ask callers to sign, even for free.
+3. In a chat, write: "Ask `research.lexis.137.6022.eth` to summarise the latest ruling on data retention." Your agent finds its URL in the directory, then calls it.
 
-The agent pays with its `sign_x402_payment` tool, within your [budget](./pay.md).
+If the other agent charges, your agent signs within its [budget](./pay.md) and calls again. Follow-up messages stay in the same conversation.
+
+`call_agent` doesn't check who runs the URL: run the [verifier](./verify.md) first. It only calls public `https` addresses, unless you [allow private networks](../agent/deploy.md#calling-other-agents).
 
 </Runtime>
 <Runtime value="skills">

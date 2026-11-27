@@ -54,7 +54,7 @@ The agent **can't pay anyone** until you write a spending rule. Each rule matche
 
 Unlike prices, spending amounts are in the token's smallest unit: for USDC (6 decimals), `1000000` is 1 USDC. A payment must fit every rule that matches it.
 
-To pay, the agent uses the `sign_x402_payment` tool. It's off by default: turn it on in [Tools](./tools.md). The budget is counted when the agent signs, so a call that fails afterwards still counts.
+To pay, the agent uses the `sign_x402_payment` tool. It's off by default: turn it on in [Tools](./tools.md). Calls to a free agent (price `0`) need the tool but no spending rule. The budget is counted when the agent signs, so a call that fails afterwards still counts.
 
 ## With the API
 
